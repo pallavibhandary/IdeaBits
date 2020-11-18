@@ -1,3 +1,4 @@
+
 package com.example.ideabits;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view)
             {
                 Intent intent = new Intent(AdminCategory.this, AddNewImage.class);
-                intent.putExtra("category", "Diy & Arts");
+                intent.putExtra("category", "diy & Arts");
                 startActivity(intent);
             }
         });
