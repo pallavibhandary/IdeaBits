@@ -42,15 +42,15 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
 
-        LoginButton = (Button) findViewById(R.id.login_btn);
-        InputPassword = (EditText) findViewById(R.id.login_password_input);
-        InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input);
-        AdminLink = (TextView) findViewById(R.id.admin_panel_link);
-        NotAdminLink = (TextView) findViewById(R.id.not_admin_panel_link);
+        LoginButton =  findViewById(R.id.login_btn);
+        InputPassword =  findViewById(R.id.login_password_input);
+        InputPhoneNumber =  findViewById(R.id.login_phone_number_input);
+        AdminLink = findViewById(R.id.admin_panel_link);
+        NotAdminLink =  findViewById(R.id.not_admin_panel_link);
         loadingBar = new ProgressDialog(this);
 
 
-        chkBoxRememberMe = (CheckBox) findViewById(R.id.remember_me_chkb);
+        chkBoxRememberMe =  findViewById(R.id.remember_me_chkb);
         Paper.init(this);
 
 
@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity
                                 Toast.makeText(LoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                 Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }

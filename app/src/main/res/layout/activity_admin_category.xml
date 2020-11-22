@@ -63,7 +63,7 @@
             android:id="@+id/diy"
             android:layout_width="wrap_content"
             android:layout_height="108dp"
-            android:src="@drawable/dog" />
+            android:src="@drawable/arts" />
 
     </LinearLayout>
     <LinearLayout
