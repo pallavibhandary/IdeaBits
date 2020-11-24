@@ -19,11 +19,11 @@ public class AdminCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
-        fashion = (ImageView) findViewById(R.id.fashion);
-        quotes = (ImageView) findViewById(R.id.quotes);
-        travel = (ImageView) findViewById(R.id.travel);
-        Diy = (ImageView) findViewById(R.id.diy);
-        dog = (ImageView) findViewById(R.id.dog);
+        fashion =  findViewById(R.id.fashion);
+        quotes =  findViewById(R.id.quotes);
+        travel =  findViewById(R.id.travel);
+        Diy =  findViewById(R.id.diy);
+        dog =  findViewById(R.id.dog);
 
         fashion.setOnClickListener(new View.OnClickListener() {
             @Override

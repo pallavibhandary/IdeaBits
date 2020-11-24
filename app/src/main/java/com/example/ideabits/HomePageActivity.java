@@ -101,7 +101,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
                     {
-                        holder.txtImageName.setText(model.getIname());
+                        holder.txtImageName.setText(model.getPname());
                         holder.txtImageDescription.setText(model.getDescription());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                     }

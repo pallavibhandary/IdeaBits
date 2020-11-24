@@ -32,7 +32,7 @@ import java.util.HashMap;
 
 public class AddNewImage extends AppCompatActivity {
 
-    private String CategoryName, Description, Iname, saveCurrentDate, saveCurrentTime;
+    private String CategoryName, Description, Pname, saveCurrentDate, saveCurrentTime;
     private Button AddNewImageButton;
     private ImageView InputProductImage;
     private EditText InputImageName, InputImageDescription;
@@ -40,7 +40,7 @@ public class AddNewImage extends AppCompatActivity {
     private Uri ImageUri;
     private String productRandomKey, downloadImageUrl;
     private StorageReference ProductImagesRef;
-    private DatabaseReference ImageRef;
+    private DatabaseReference ProductsRef;
     private ProgressDialog loadingBar;
 
     @Override
@@ -50,12 +50,14 @@ public class AddNewImage extends AppCompatActivity {
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ImageRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         AddNewImageButton = (Button) findViewById(R.id.add_new_image);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
         InputImageName = (EditText) findViewById(R.id.image_name);
         InputImageDescription = (EditText) findViewById(R.id.image_description);
+        loadingBar = new ProgressDialog(this);
+
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -99,7 +101,7 @@ public class AddNewImage extends AppCompatActivity {
     private void ValidateImageData()
     {
         Description = InputImageDescription.getText().toString();
-        Iname = InputImageName.getText().toString();
+        Pname = InputImageName.getText().toString();
 
 
         if (ImageUri == null)
@@ -111,7 +113,7 @@ public class AddNewImage extends AppCompatActivity {
             Toast.makeText(this, "Please write Image description...", Toast.LENGTH_SHORT).show();
         }
 
-        else if (TextUtils.isEmpty(Iname))
+        else if (TextUtils.isEmpty(Pname))
         {
             Toast.makeText(this, "Please write Image name...", Toast.LENGTH_SHORT).show();
         }
@@ -130,10 +132,10 @@ public class AddNewImage extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         productRandomKey = saveCurrentDate + saveCurrentTime;
@@ -197,9 +199,9 @@ public class AddNewImage extends AppCompatActivity {
         productMap.put("description", Description);
         productMap.put("image", downloadImageUrl);
         productMap.put("category", CategoryName);
-        productMap.put("Iname", Iname);
+        productMap.put("pname", Pname);
 
-        ImageRef.child(productRandomKey).updateChildren(productMap)
+        ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)
