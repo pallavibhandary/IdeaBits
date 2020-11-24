@@ -13,10 +13,10 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/image_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Product Name"
+            android:text="Image Name"
             android:textAlignment="center"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -27,29 +27,17 @@
             android:id="@+id/product_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@+id/product_name"
-            android:src="@drawable/inverse"
+            android:layout_below="@+id/image_name"
             android:scaleType="centerCrop"
             android:layout_marginTop="2dp"
             />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/image_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_image"
-            android:text="Product Price"
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimaryDark"
-            />
-
-        <TextView
-            android:id="@+id/product_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_price"
-            android:text="Product Description"
+            android:text="Image Description"
             android:layout_marginTop="2dp"
             android:textAlignment="center"
             android:textSize="16dp"

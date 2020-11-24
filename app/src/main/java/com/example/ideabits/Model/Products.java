@@ -1,17 +1,17 @@
 package com.example.ideabits.Model;
 
 public class Products {
-    private String pname, description, price, image, category, pid, data, time;
+    private String Iname, description, price, image, category, pid, data, time;
 
     public Products()
     {
 
     }
 
-    public Products(String pname, String description, String price, String image, String category, String pid, String data, String time) {
-        this.pname = pname;
+    public Products(String Iname, String description, String image, String category, String pid, String data, String time) {
+        this.Iname = Iname;
         this.description = description;
-        this.price = price;
+
         this.image = image;
         this.category = category;
         this.pid = pid;
@@ -19,12 +19,12 @@ public class Products {
         this.time = time;
     }
 
-    public String getPname() {
-        return pname;
+    public String getIname() {
+        return Iname;
     }
 
-    public void setPname(String pname) {
-        this.pname = pname;
+    public void setIname(String Iname) {
+        this.Iname = Iname;
     }
 
     public String getDescription() {
@@ -35,13 +35,6 @@ public class Products {
         this.description = description;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
     public String getImage() {
         return image;

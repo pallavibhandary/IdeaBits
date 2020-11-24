@@ -50,7 +50,7 @@ public class AddNewImage extends AppCompatActivity {
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ImageRef = FirebaseDatabase.getInstance().getReference().child("Images");
+        ImageRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         AddNewImageButton = (Button) findViewById(R.id.add_new_image);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);

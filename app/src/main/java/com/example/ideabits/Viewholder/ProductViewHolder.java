@@ -11,7 +11,7 @@ import com.example.ideabits.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
-    public TextView txtProductName, txtProductDescription, txtProductPrice;
+    public TextView txtImageName, txtImageDescription;
     public ImageView imageView;
     public ItemClickListener listener;
 
@@ -21,13 +21,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         super(itemView);
 
 
-        imageView = (ImageView) itemView.findViewById(R.id.product_image);
-        txtProductName = (TextView) itemView.findViewById(R.id.product_name);
-        txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
-        txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
+        imageView = itemView.findViewById(R.id.product_image);
+        txtImageName = itemView.findViewById(R.id.image_name);
+        txtImageDescription = itemView.findViewById(R.id.image_description);
+
     }
 
-    public void setItemClickListner(ItemClickListener listener)
+    public void setItemClickListener(ItemClickListener listener)
     {
         this.listener = listener;
     }
