@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ideabits.Model.Products;
@@ -17,102 +20,96 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rey.material.widget.Button;
-import com.rey.material.widget.FloatingActionButton;
-import com.rey.material.widget.ImageView;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-
-import com.rey.material.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Map;
-
-import static com.example.ideabits.R.id.product_image_details;
-
+import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-
-//    private FloatingActionButton addToCartBtn;
-    private Button saveImage
     private ImageView productImage;
+    private Button saveImage;
     private TextView productDescription, productName;
     private String productID = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
+        saveImage = findViewById(R.id.save_image_btn);
         productID = getIntent().getStringExtra("pid");
-
-//        addToCartBtn = (FloatingActionButton) findViewById(R.id.add_product_to_cart_btn);
-        saveImage = (Button) findViewById(R.id.pd_save_image_btn);
-        productImage = (ImageView) findViewById(R.id.product_image_details);
-        productDescription = (TextView) findViewById(R.id.product_name_details);
-        productName = (TextView) findViewById(R.id.product_description_details);
+        productImage = findViewById(R.id.product_image_details);
+        productDescription = findViewById(R.id.product_name_details);
+        productName = findViewById(R.id.product_description_details);
 
         getProductDetails(productID);
-        saveImage.setOnClickListener((new View.OnClickListener() {
+        saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                savedImageList()
+            public void onClick(View view) {
+                savedImageList();
             }
-        }));
+        });
 
     }
-
-    private void savedImageList() {
+    private void savedImageList()
+    {
 
         String saveCurrentTime, saveCurrentDate;
 
-        Calendar calForDate = Calendar.getInstance()
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM-dd-yyyy");
+        Calendar calForDate = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentDate.format(calForDate.getTime());
 
-        final DatabaseReference saveListRef = FirebaseDatabase.getInstance().getReference().child("Save Image");
+        final DatabaseReference saveListRef = FirebaseDatabase.getInstance().getReference().child("Save List");
 
-        find HashMap<String, Object> SaveMap = new Map<>()
+        final HashMap<String, Object> saveMap = new HashMap<>();
         saveMap.put("pid", productID);
+        saveMap.put("description",productDescription.getText().toString());
+
         saveMap.put("pname", productName.getText().toString());
         saveMap.put("date", saveCurrentDate);
         saveMap.put("time", saveCurrentTime);
 
-        saveListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(saveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+
+        saveListRef.child("User View").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(saveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
-                    saveListRef.child("User View").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(saveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                if (task.isSuccessful()) {
+                    saveListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(saveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
+                            if (task.isSuccessful()) {
                                 Toast.makeText(ProductDetailsActivity.this, "Image Saved", Toast.LENGTH_SHORT).show();
+
                                 Intent intent = new Intent(ProductDetailsActivity.this, HomePageActivity.class);
                                 startActivity(intent);
+                            }
 
                         }
-                    }) {
 
-                    }
+                    });
+                }
             }
-        })
-
-
+        });
     }
 
-    private void getProductDetails(String productID) {
+    private void getProductDetails(String productID)
+    {
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products");
-        productRef.child(productID).addValueEventListener(new ValueEventListener() {
+        productRef.child(productID).addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = null;
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
                 if (dataSnapshot.exists())
                 {
                     Products products = dataSnapshot.getValue(Products.class);

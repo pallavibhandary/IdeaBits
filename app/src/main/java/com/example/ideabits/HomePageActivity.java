@@ -57,8 +57,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(HomePageActivity.this, SaveImageActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -171,18 +171,19 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         if (id == R.id.nav_cart)
         {
+            Intent intent = new Intent(HomePageActivity.this, SaveImageActivity.class);
+            startActivity(intent);
 
         }
-        else if (id == R.id.nav_saved)
-        {
 
-        }
         else if (id == R.id.nav_categories)
         {
 
         }
-        else if (id == R.id.nav_settings)
+        else if (id == R.id.nav_search)
         {
+            Intent intent = new Intent(HomePageActivity.this, SearchImagesActivity.class);
+            startActivity(intent);
 
         }
         else if (id == R.id.nav_logout)
