@@ -3,24 +3,18 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_margin="10dp"
     app:cardElevation="15dp">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="#3BACBF"
+        android:padding="10dp"
+        >
 
-        <TextView
-            android:id="@+id/save_image_name"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Image Name"
-            android:textColor="@android:color/white"
-            android:textSize="14dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold"
-            />
 
 
 
@@ -28,12 +22,32 @@
             android:id="@+id/myImageDesc"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:textAlignment="viewEnd"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="1dp"
+            android:layout_marginStart="190dp"
+            android:textSize="17dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sansita"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="1dp"
             android:text="ImageDesc"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/save_image_name"
+            android:layout_width="160dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sansita"
+            android:text="Image Name"
+            android:textColor="@android:color/black"
+            android:textSize="17dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            />
+
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

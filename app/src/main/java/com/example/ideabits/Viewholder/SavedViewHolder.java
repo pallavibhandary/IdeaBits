@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ideabits.Interface.ItemClickListener;
 import com.example.ideabits.R;
+import com.squareup.picasso.Picasso;
 
 public class SavedViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener
 {
@@ -17,6 +18,7 @@ public class SavedViewHolder extends  RecyclerView.ViewHolder implements View.On
 
     public SavedViewHolder(@NonNull View itemView) {
         super(itemView);
+
 
         txtImageName = itemView.findViewById(R.id.save_image_name);
 

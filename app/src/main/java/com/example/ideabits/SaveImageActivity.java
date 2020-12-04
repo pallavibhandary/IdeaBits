@@ -99,6 +99,7 @@ public class SaveImageActivity extends AppCompatActivity {
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
+                                        "Go To The Saved Image",
                                         "Remove"
                                 };
                         AlertDialog.Builder builder= new AlertDialog.Builder(SaveImageActivity.this);
@@ -106,9 +107,16 @@ public class SaveImageActivity extends AppCompatActivity {
 
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
+                            public void onClick(DialogInterface dialogInterface, int i)
+                            {
                                 if(i==0)
+                                {
+                                    Intent intent = new Intent(SaveImageActivity.this, ProductDetailsActivity.class);
+                                    intent.putExtra("pid",model.getPid());
+                                    startActivity(intent);
+                                }
+
+                                if(i==1)
                                 {
                                     saveListRef.child("User View")
                                     .child(Prevalent.currentOnlineUser.getPhone())
